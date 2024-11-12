@@ -6,11 +6,11 @@ class Imovel(Base):
     __tablename__="imoveis"
     
     id = Column(Integer, primary_key = True, index=True)
-    name = Column(String, nullable=False)
-    city = Column(String, nullable = False)
-    street = Column(String, nullable=False)
-    size = Column(String, nullable=False)
-    number = Column(String, nullable=False)
-    description = Column(Text)
+    nome = Column(String, nullable=False)
+    cidade = Column(String, nullable = False)
+    rua = Column(String, nullable=False)
+    tamanho = Column(String, nullable=False)
+    numero = Column(String)
+    descricao = Column(Text)
     
     fotos = relationship("FotoImovel", back_populates="imovel")
