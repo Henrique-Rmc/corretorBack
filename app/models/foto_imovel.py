@@ -1,6 +1,8 @@
 from sqlalchemy import Column, Integer, String, ForeignKey
-from app.db.database import Base
+from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import relationship
+
+Base= declarative_base()
 
 class FotoImovel(Base):
     __tablename__ = "fotos_imovel"
