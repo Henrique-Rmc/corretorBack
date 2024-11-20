@@ -1,4 +1,4 @@
-from pydantic_settings import BaseSettings
+from pydantic_settings import BaseSettings, SettingsConfigDict
 from pathlib import Path
 
 class Settings(BaseSettings):
@@ -8,7 +8,7 @@ class Settings(BaseSettings):
     db_pwd: str
     db_usr: str
     port: int
-    
+
     # JWT Token Related
     secret_key: str
     refresh_secret_key : str

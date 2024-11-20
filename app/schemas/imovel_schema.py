@@ -11,7 +11,7 @@ class FotoImovel(FotoImovelBase):
     id: int
     
     class Config:
-        orm_mode = True
+        from_attributes = True
         
 class ImovelBase(BaseModel):
     nome: str
@@ -29,4 +29,4 @@ class Imovel(ImovelBase):
     fotos: List[FotoImovel] = []
     
     class Config:
-        orm_mode = True
+        from_attributes = True

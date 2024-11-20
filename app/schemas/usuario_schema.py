@@ -8,7 +8,7 @@ class GetUser(BaseModel):
     
     class Config:
         title = "GetUsuario"
-        orm_mode = True
+        from_attributes = True
         use_enum_values = True
         
 class LoginUser(BaseModel):
@@ -17,7 +17,7 @@ class LoginUser(BaseModel):
     
     class Config:
         title = "LoginUser Schema"
-        orm_mode = True
+        from_attributes = True
         use_enum_values = True
         
 class PostUser(BaseModel):
@@ -26,5 +26,5 @@ class PostUser(BaseModel):
     hashed_password: str
     
     class Config:
-        orm_mode = True
+        from_attributes = True
         user_enum_values = True

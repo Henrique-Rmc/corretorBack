@@ -1,24 +1,15 @@
 #sqlalchemy é responsavel por transformar nossa classe python em um esquema
-from sqlalchemy import Column, Integer, String
+from typing import List, Optional
+from sqlalchemy import String, Text
+from sqlalchemy import ForeignKey
+from sqlalchemy.orm import relationship, mapped_column, Mapped
+from app.models.base import Base
 
-from sqlalchemy.ext.declarative import declarative_base
-
-Base = declarative_base()
 
 class Usuario(Base):
     __tablename__= "usuarios"
     
-    id = Column(Integer, primary_key=True, index=True )
-    nome = Column(String, nullable = False, index=True)
-    email = Column(String, unique=True, index = True)
-    hashed_password = Column(String, nullable=False)
-
-
-class Token(Base):
-    __tablename__ = "tokens"
-    
-    id = Column(Integer, primary_key=True, index=True)
-    token = Column(String, index=True)
-    user_id = Column(Integer)
-    
-    
+    id: Mapped[int] = mapped_column(primary_key=True)
+    nome : Mapped[str] = mapped_column(String)
+    email : Mapped[str] = mapped_column(String)
+    hashed_password: Mapped[str] = mapped_column(String)

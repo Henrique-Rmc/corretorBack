@@ -1,14 +1,13 @@
-from sqlalchemy import Column, Integer, String, ForeignKey
-from sqlalchemy.ext.declarative import declarative_base
-from sqlalchemy.orm import relationship
+from sqlalchemy import ForeignKey, String
 
-Base= declarative_base()
+from app.models.base import Base
+from sqlalchemy.orm import relationship, mapped_column, Mapped
 
 class FotoImovel(Base):
-    __tablename__ = "fotos_imovel"
+    __tablename__ = "fotos_imoveis"
     
-    id = Column(Integer, primary_key=True, index = True)
-    imovel_id = Column(Integer, ForeignKey("imoveis.id"))
-    foto_url = Column(String, nullable=True)
+    id : Mapped[int] = mapped_column(primary_key=True)
+    imovel_id : Mapped[int] = mapped_column(ForeignKey("imoveis.id", ondelete="CASCADE"))
+    foto_url: Mapped[str] = mapped_column(String)
     
     imovel = relationship("Imovel", back_populates="fotos")
