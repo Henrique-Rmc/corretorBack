@@ -21,6 +21,9 @@ class ImovelBase(BaseModel):
     numero : str
     descricao : Optional[str] = None
     
+class GetImovel(ImovelBase):
+    pass
+    
 class ImovelCreate(ImovelBase):
     fotos : List[FotoImovelCreate] = []
     

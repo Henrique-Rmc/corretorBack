@@ -16,6 +16,7 @@ class Imovel(Base):
     tamanho: Mapped[str] = mapped_column(String)
     numero: Mapped[Optional[str]] = mapped_column(String)
     descricao: Mapped[Optional[str]] = mapped_column(String)
+    valor: Mapped[str] = mapped_column(String)
     fotos: Mapped[List["FotoImovel"]] = relationship(
         "FotoImovel", back_populates="imovel", cascade="all, delete"
         )

@@ -1,11 +1,18 @@
-from models import *
-from schemas import *
-from fastapi import HTTPException, Request
-from config import setting
+from app.db.db import get_db
+from fastapi import Depends, HTTPException, Request
+from app.config import setting
 from datetime import datetime, timedelta
 from typing import Union, Any, Optional
+from sqlalchemy.orm import Session
+from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 import jwt
 from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
+from passlib.context import CryptContext
+
+oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")
+
+pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+
 
 def create_access_token(subject: Union[str, Any], expires_delta: int = None) -> str:
     if expires_delta is not None:
@@ -33,7 +40,9 @@ def decodeJWT(jwtoken: str):
         return payload
     except:
         return None
-
+    
+def verify_password(plain_password: str, hashed_password: str) -> bool:
+    return pwd_context.verify(plain_password, hashed_password)
 
 class JWTBearer(HTTPBearer):
     def __init__(self, auto_error: bool = True):
@@ -57,5 +66,6 @@ class JWTBearer(HTTPBearer):
             return True
         except jwt.ExpiredSignatureError:
             return False
-        except jwt.JWTError:
+        except jwt.InvalidTokenError:
             return False
+        
