@@ -1,5 +1,5 @@
 from typing import List, Optional
-from sqlalchemy import String, Text
+from sqlalchemy import ForeignKey, String, Text
 from sqlalchemy.orm import relationship, mapped_column, Mapped
 from app.models.base import Base
 
@@ -20,4 +20,5 @@ class Imovel(Base):
     fotos: Mapped[List["FotoImovel"]] = relationship(
         "FotoImovel", back_populates="imovel", cascade="all, delete"
         )
-    usuario = relationship("Usuario", back_populates="imoveis")
+    usuario_id : Mapped[str] = mapped_column(ForeignKey("usuarios.id"), nullable=False) 
+    usuario: Mapped["Usuario"] = relationship("Usuario", back_populates="imoveis")

@@ -61,9 +61,7 @@ class UserService:
         hashed_password = secure_pwd(payload.hashed_password)
         payload.hashed_password = hashed_password
 
-        UserRepo.create_user(db, payload)
-        
-        return user
+        return UserRepo.create_user(db, payload)
     
 
             
