@@ -23,8 +23,10 @@ class LoginUser(BaseModel):
 class PostUser(BaseModel):
     nome: str
     email: EmailStr
+    telefone: str
     hashed_password: str
     
     class Config:
         from_attributes = True
         user_enum_values = True
+        

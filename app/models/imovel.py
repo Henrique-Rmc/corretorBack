@@ -20,3 +20,4 @@ class Imovel(Base):
     fotos: Mapped[List["FotoImovel"]] = relationship(
         "FotoImovel", back_populates="imovel", cascade="all, delete"
         )
+    usuario = relationship("Usuario", back_populates="imoveis")
