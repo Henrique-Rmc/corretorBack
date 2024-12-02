@@ -18,7 +18,7 @@ from app.repositories.user_repo import  UserRepo
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="/login")
 
 
-class UserService:
+class UsuarioService:
     def get_current_user(
         token: str = Depends(oauth2_scheme), db: Session = Depends(get_db)) -> Usuario:
         try:
@@ -76,7 +76,6 @@ class UserService:
                 raise HTTPException(
                     status_code=401, detail="Senha Inválida"
                 )
-            print("logou")
             return user
         except jwt.InvalidSignatureError:
             raise HTTPException(status_code=401, detail="Não Foi possível realizar o Login")

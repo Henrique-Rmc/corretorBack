@@ -8,7 +8,7 @@ from app.schemas.imovel_schema import ImovelCreate
 
 class ImovelService:
     @staticmethod
-    def cadastrar_imovel( db: Session ,imovel_data: ImovelCreate) -> Imovel:
+    def create_imovel( db: Session ,imovel_data: ImovelCreate) -> Imovel:
         novo_imovel = Imovel(**imovel_data.model_dump())
         db.add(novo_imovel)
         db.commit()

@@ -20,15 +20,17 @@ class ImovelBase(BaseModel):
     tamanho : str
     numero : str
     descricao : Optional[str] = None
+
+class PostImovel(ImovelBase):
+    pass
     
 class GetImovel(ImovelBase):
     pass
     
 class ImovelCreate(ImovelBase):
-    fotos : List[FotoImovelCreate] = []
+    fotos : Optional[List[FotoImovelCreate]] = []
     
 class Imovel(ImovelBase):
-    id: int
     fotos: List[FotoImovel] = []
     
     class Config:

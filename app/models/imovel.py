@@ -4,6 +4,7 @@ from sqlalchemy.orm import relationship, mapped_column, Mapped
 from app.models.base import Base
 
 from app.models.foto_imovel import FotoImovel
+from app.models.usuario import Usuario
 
 
 class Imovel(Base):
